@@ -1,0 +1,109 @@
+/* COMMON CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 10px;
+  font: inherit;
+  vertical-align: baseline;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  text-decoration: none;
+  color:#231f20;
+}
+/* interval */
+body,div,
+dl,dt,dd,
+ul,ol,li,
+h1,h2,h3,h4,h5,h6,p,
+form,fieldset,
+button,input {margin: 0;padding: 0}
+
+/* list */
+ul, ol {list-style: none}
+
+/* text */
+a, a:hover {color: #000;text-decoration: none;}
+label, button {cursor: pointer;}
+em,address,dfn,cite {font-style: normal;}
+body {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+a, button {-webkit-tap-highlight-color: transparent;}
+
+/* border, align, outline */
+img, fieldset, iframe {border: 0}
+img, a, input, select, button {vertical-align: top;}
+a, input, button {outline: none;}
+button {
+  cursor: pointer;
+  border: 1px solid #000;
+}
+
+
+/* form */
+legend {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: -1000em;
+  left: 0;
+}
+
+/* table */
+table {width: 100%;border-spacing: 0;border-collapse: collapse;}
+table, th, td {color: #000;border: 1px solid #000;}
+caption {width: 0; height: 0; font-size: 0; line-height: 0; overflow: hidden; visibility: hidden;}
+
+html, body{ width: 100%; height: 100%; font-size: 10px;}
+
+/* 공통 폰트 컬러  */
+.sky{ color: #00AAE0; }
+
+/*
+  woff2 : 크롬, 파폭, 사파리, 오페라
+  woff  : ie9~ 대응
+*/
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 400;
+  src:  url(../fonts/NotoSans-Regular.woff2) format('woff2'),
+        url(../fonts/NotoSans-Regular.woff) format('woff'),
+        url(../fonts/NotoSans-Regular.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 500;
+  src:  url(../fonts/NotoSans-Medium.woff2) format('woff2'),
+        url(../fonts/NotoSans-Medium.woff) format('woff'),
+        url(../fonts/NotoSans-Medium.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 700;
+  src:  url(../fonts/NotoSans-Bold.woff2) format('woff2'),
+        url(../fonts/NotoSans-Bold.woff) format('woff'),
+        url(../fonts/NotoSans-Bold.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 900;
+  src:  url(../fonts/NotoSans-Black.woff2) format('woff2'),
+        url(../fonts/NotoSans-Black.woff) format('woff'),
+        url(../fonts/NotoSans-Black.otf) format('opentype');
+}

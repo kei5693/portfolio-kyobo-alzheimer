@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" href="favicon.ico">
+  <title>치매진단 시뮬레이터00-</title>
+  <link href="./css/common.css" rel="stylesheet" type="text/css">
+  <link href="./css/style.css" rel="stylesheet" type="text/css">
+  <script src="./js/vue.min.js"></script>
+  <script src="./js/vuex.js"></script>
+  <script src="./js/clipboard.min.js"></script>
+  <script src="./js/kakao.js"></script>
+</head>
+<body>
+
+<div id="app" class="intro" :class="{kakao:userAgentKakao}">
+  <top-header></top-header>
+  <!-- contents -->
+  <div class="contents">
+    <div class="title">
+      <div class="inner">
+        <h1>
+          <strong><span>치매진단</span></strong><br>
+          <strong><span>시뮬레이터</span></strong>
+        </h1>
+        <p>주관적 인지능력 기억감퇴 논문을<br>바탕으로 구성된 10가지 문항을 통해<br>자가 진단을 해보세요.</p>
+        <button type="button" @click="mainPopupToggle">팝업 열기</button>
+      </div>
+    </div>
+    <div class="graphBox"><img src="./images/img_intro_01.png" alt=""></div>
+    <button type="button" @click="onClickStart">치매진단 시작</button>
+  </div>
+  <!-- //contents -->
+  <button class="btnShare" type="button" @click="onClickShare">공유팝업</button>
+
+  <!-- POPUP main -->
+  <div class="common-popup-wrap" v-if="showMainPopup">
+    <div class="common-popup-con">
+      <div class="popup">
+        <h2>출처</h2>
+        <div class="contents-con">
+          <dl>
+            <dt>논문명</dt>
+            <dd>
+              [Development of the Subjective Memory Complaints Questionnaire]<br>
+              (주관적 인지 능력 감퇴증 설문)
+            </dd>
+            <dt>저자명</dt>
+            <dd>
+              Jong Chul Youn (윤종철), Ki Woong Kim (김기웅), Dong Young Lee (이동영), Jin Hyeong Jhoo(주진형), Seok Bum Lee (이석범), Joon Hyuk Park (박준혁), Eun Ae Choi (최은애), Jin Yeong Choe(최진영), Ji Woon Jeong (정지운), Il Han Choo(추일한), Jong Inn Woo (우종인)
+            </dd>
+            <dt>잡지명</dt>
+            <dd>
+              DEMENTIA AND GERIATRIC COGNITIVE DISORDERS<br>
+              (치매와 노인인지장애)
+            </dd>
+            <dt>발행년도</dt>
+            <dd>2009</dd>
+          </dl>
+        </div>
+        <button type="button" @click="mainPopupToggle">팝업 닫기</button>
+      </div>
+    </div>
+  </div>
+  <!-- //POPUP -->
+
+  <!-- POPUP share -->
+  <div class="common-popup-wrap share" v-if="showUrlAlert">
+    <div class="common-popup-con">
+      <div class="popup">
+        <h2>공유하기</h2>
+        <div class="contents-con">
+          <ul class="share-list">
+            <li @click="onClickKakao"><span>카카오톡</span></li>
+            <li
+              class="url-copy"
+              @click="onClickUrlCopy"
+              :data-clipboard-text="copyURL"
+            ><span>URL복사</span></li>
+          </ul>
+        </div>
+        <button type="button" @click="onClickShare">닫기</button>
+      </div>
+    </div>
+  </div>
+  <!-- //POPUP -->
+</div>
+
+<script src="./js/app.js"></script>
+<script type="text/javascript">
+  // SDK를 초기화, JavaScript 키 설정
+  Kakao.init('2aedee4a712787946df3f198feb196c8');
+  // SDK 초기화 여부
+  console.log(Kakao.isInitialized());
+</script>
+
+</body>
+</html>

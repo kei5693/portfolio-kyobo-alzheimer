@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" href="favicon.ico">
+  <title>치매진단 시뮬레이터</title>
+  <link href="./css/common.css" rel="stylesheet" type="text/css">
+  <link href="./css/style.css" rel="stylesheet" type="text/css">
+  <script src="./js/vue.min.js"></script>
+  <script src="./js/vuex.js"></script>
+  <script src="./js/clipboard.min.js"></script>
+  <script src="./js/kakao.js"></script>
+</head>
+<body>
+
+<div id="app" class="result">
+  <div class="contents">
+    <top-header></top-header>
+    <div class="title">
+      <div class="inner">
+        <h1>
+          <strong><span>고객님의</span></strong><br>
+          <strong><span>치매 진단, 검사 결과는?</span></strong>
+        </h1>
+        <p>운동을 생활화하고, 다양한 사회활동을<br>하는 것은 치매 예방에 큰 도움이 됩니다.</p>
+      </div>
+    </div>
+
+    <div class="result-contents">
+      <div class="condition">
+        <h2>
+          <span>총 <em>{{trueCount}}</em>점으로</span><br>
+          <span>인지 능력 감퇴가 <em>{{resultText}}</em>상태입니다.</span>
+        </h2>
+        <ul>
+          <li>총점이 <span>5점 이상</span>이면 치매에 대한 진단평가를 받아볼 필요가 있는 인지 능력 감퇴가 있다고 판정합니다.</li>
+          <li>정확한 치매검진 진단은 가까운 보건소나 치매지원센터를 방문하여 확인하세요.</li>
+        </ul>
+      </div>
+      <div class="popup-box">
+        <h3>치매,<br>무엇이든 물어보세요.</h3>
+        <ul>
+          <li
+            v-for="(titleData, titleIndex) in popupDataLists"
+            :key="`titleData${titleIndex}`"
+            @click="resultPopupToggle(titleIndex)"
+          >
+            <span v-html="titleData.title"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button type="button" @click="onClickGotoHome">치매진단 다시하기</button>
+  </div>
+  <button class="btnShare" type="button" @click="onClickShare">공유팝업</button>
+
+  <!-- POPUP 시작 -->
+  <div class="common-popup-wrap" v-if="showResultPopup">
+    <div class="common-popup-con">
+      
+      <div class="popup result"
+        v-for="(popupData, popupIndex) in popupDataLists"
+        :key="`popupData${popupIndex}`"
+        :class="{on : resultPopupIndex == popupIndex}"
+      >
+        <h2 v-html="popupData.title"></h2>
+        <div class="contents-con"><img :src="popupData.images" alt=""></div>
+        <button type="button" @click="resultPopupToggle()">팝업 닫기</button>
+      </div>
+    </div>
+  </div>
+  <!-- POPUP 끝 -->
+  <!-- POPUP share -->
+  <div class="common-popup-wrap share" v-if="showUrlAlert">
+    <div class="common-popup-con">
+      <div class="popup">
+        <h2>공유하기</h2>
+        <div class="contents-con">
+          <ul class="share-list">
+            <li @click="onClickKakao"><span>카카오톡</span></li>
+            <li
+              class="url-copy"
+              @click="onClickUrlCopy"
+              :data-clipboard-text="copyURL"
+            ><span>URL복사</span></li>
+          </ul>
+        </div>
+        <button type="button" @click="onClickShare">닫기</button>
+      </div>
+    </div>
+  </div>
+  <!-- //POPUP -->
+</div>
+
+<script src="./js/app.js"></script>
+<script type="text/javascript">
+  // SDK를 초기화, JavaScript 키 설정
+  Kakao.init('2aedee4a712787946df3f198feb196c8');
+  // SDK 초기화 여부
+  console.log(Kakao.isInitialized());
+</script>
+
+</body>
+</html>
